@@ -4,68 +4,103 @@
     <title>UCPH.DK</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style type="text/css">
+body {
+  overflow: hidden;
+  margin: 0;
+}
+
 h1 {
   font-size: 100px;
+  text-align: center;
 }
 
 h2 {
   font-size: 70px;
+  text-align: center;
 }
 
 h3 {
   font-size: 50px;
+  text-align: center;
+}
+
+ul {
+  font-size: 70px;
+}
+
+li {
+  margin-left: 50px;
+  float: left;
+  list-style: none;
+  background-color: silver;
+  -webkit-animation: li 3s infinite;
+}
+
+@-webkit-keyframes li {
+  0% {
+    -webkit-transform: rotate(-20deg);
+  }
+  50% {
+    -webkit-transform: rotate(20deg);
+  }
+  100% {
+    -webkit-transform: rotate(-20deg);
+  }
 }
 
 #panda {
+  position: absolute;
   width: 256px;
   height: 256px;
-  animation: panda 3s infinite;
-  -webkit-animation: panda 3s infinite;
-}
-
-@keyframes panda {
-  0% {
-    margin-left: 0;
-    transform: rotate(0deg);
-  }
-  50% {
-    margin-left: calc(100% - 256px - 10px);
-    transform: rotate(720deg);
-  }
-  100% {
-    margin-left: 0;
-    transform: rotate(0deg);
-  }
+  -webkit-animation: panda 5s infinite;
+  -webkit-animation-timing-function: linear;
 }
 
 @-webkit-keyframes panda {
   0% {
-    margin-left: 0;
+    top: 0;
+    left: 0;
     -webkit-transform: rotate(0deg);
+  }
+  25% {
+    top: 0;
+    left: calc(100% - 256px);
+    -webkit-transform: rotate(-720deg);
   }
   50% {
-    margin-left: calc(100% - 256px - 10px);
-    -webkit-transform: rotate(720deg);
+    top: calc(100% - 256px);
+    left: calc(100% - 256px);
+    -webkit-transform: rotate(-1080deg);
+  }
+  75% {
+    top: calc(100% - 256px);
+    left: 0;
+    -webkit-transform: rotate(-1800deg);
   }
   100% {
-    margin-left: 0;
-    -webkit-transform: rotate(0deg);
+    top: 0;
+    left: 0;
+    -webkit-transform: rotate(-2160deg);
   }
 }
     </style>
   </head>
   <body>
-    <h1>UCPH.DK</h1>
+    <h1 style="color: green;"><marquee behavior="alternate"><a href="http://ucph.dk/">UCPH.DK</a></marquee></h1>
 
-    <h2>Danmarks bedste DIKU-portal!</h2>
+    <h2 style="color: red;">Danmarks bedste DIKU-portal!</h2>
     <hr>
-    <h3>Bidrag med indhold og få et bolsje!</h3>
+    <h3 style="color: cyan; background-color: purple;">Bidrag med indhold og få et bolsje!</h3>
+    <h3 style="color: yellow; background-color: grey;"><a href="http://ucph.dk">UCPH.DK</a> har alle teknologierne!</h3>
+    <ul>
+      <li>INFORMATION</li>
+      <li>IRC-CHAT</li>
+      <li>KALENDER</li>
+      <li>ORDBOG</li>
+    </ul>
 
-    <p>
-      <img src="res/pandahoved-cirkel.png"
-           alt="Panda siger velkommen" title="Panda siger velkommen"
-           id="panda" />
-    </p>
-
+    <img src="res/pandahoved-cirkel.png"
+         alt="Panda siger velkommen" title="Panda siger velkommen"
+         id="panda" />
   </body>
 </html>

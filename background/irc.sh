@@ -16,20 +16,13 @@ color_usermsg() {
     {
         echo -en "$timecolor"
         echo -en "$time "
-	echo -en "$usercolor"
-	echo -n "$user>"
-	echo -en "$msgcolor"
-	echo "$end"
+        echo -en "$usercolor"
+        echo -n "$user>"
+        echo -en "$msgcolor"
+        echo "$end"
     }
 
     cat # Resterende linjer.
-}
-
-ircloop() {
-    while true; do
-	sic -h irc.freenode.net -n $name
-        sleep 2
-    done
 }
 
 # Input til IRC-klienten.
@@ -38,10 +31,23 @@ touch $in
 
 channel="#diku"
 
-# Join #diku.
-(echo ":j $channel" > $in) &
+join_channel() {
+    # Join #diku.
+    (echo ":j $channel" > $in) &
+}
+
+ircloop() {
+    while true; do
+        sic -h irc.freenode.net -n $name
+        sleep 2
+        join_channel
+    done
+}
+
+join_channel
 
 # Kør klienten i baggrunden.
+touch $irc_out
 tail -f $in \
     | ircloop \
     | grep --line-buffered -E "^$channel" \
@@ -49,5 +55,5 @@ tail -f $in \
     | tee /dev/stderr \
     | sed -u 's/^ *//' \
     | while IFS='' read line; do
-	  echo "$line" | fmt -75 | color_usermsg >> $irc_out
+          echo "$line" | fmt -75 | color_usermsg >> $irc_out
       done
